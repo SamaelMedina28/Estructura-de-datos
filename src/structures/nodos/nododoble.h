@@ -7,8 +7,8 @@
 typedef struct nodo
 {
 	void *dato;
-	struct nodo *sig;
-	struct nodo *ant;
+	struct nodo *siguiente;
+	struct nodo *anterior;
 }NodoD;
 
 NodoD* crearNodoD(void *dato);

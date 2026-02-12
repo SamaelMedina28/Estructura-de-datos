@@ -3,7 +3,7 @@
 
 #include "../nodos/nododoble.h"
 
-typedef struct 
+typedef struct
 {
 	NodoD *inicio;
 	NodoD *fin;
@@ -14,20 +14,18 @@ typedef struct
 }ListaD;
 
 ListaD inicializarListaD(void);
-void mostrarListaD(ListaD lista);
+void mostrarListaD(ListaD lista); 
 
-
-void insertarFinalD(ListaD*,void*);
 void borrarListaD(ListaD *);
 void borrarDatoD(ListaD *lista,void* dato,int  (*)(void*,void*));
+void eliminarEnPosicionD(ListaD *lista,int pos);
 void* buscarDatoD(ListaD lista,void *dato,int  (*)(void*,void*));
 
 void reordenarD(ListaD *,int  (*)(void*,void*) );
 void insertarOrdenadoD(ListaD *lista,void* dato);
-void insertarInicioD(ListaD *lista,void* dato);
+void insertarInicioD(ListaD *lista,void* dato); //*
+void insertarFinalD(ListaD*,void*);
 void insertarEnPosicionD(ListaD *lista,void* dato,int pos);
-void eliminarEnPosicionD(ListaD *lista,int pos);
-
 
 
 #endif

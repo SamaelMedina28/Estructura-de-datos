@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include "../iostring/iostring.h"
-#include "../structures/lista/lista.h"
-#include "Alumno.h"
+#include <stdlib.h>
+#include "../structures/listadoble/listadoble.h"
 
+int compararEnteros(void *a, void *b);
+void imprimirEnteros(void *a);
 int main()
 {
-	printf("Listas enlazadas");
-	Alumno *a,*b,*c;
+	printf("Listas doblemente enlazadas\n");
+	/* Alumno *a,*b,*c;
 	a = crearAlumno();
 	b = crearAlumno();
 	c = crearAlumno();
@@ -19,8 +20,23 @@ int main()
 
 	getchar();
 	reordenar( &lista ,compararPromedio );
-	imprimirLista(lista);
+	imprimirLista(lista); */
 
+	ListaD listaD = {NULL,NULL,0,compararEnteros,imprimirEnteros,free};
+
+	insertarInicioD(&listaD, &(int){5});
+	insertarInicioD(&listaD, &(int){10});
+
+	mostrarListaD(listaD);
 
 	return 0;
+}
+int compararEnteros(void *a, void *b)
+{
+	return *(int *)a - *(int *)b;
+}
+
+void imprimirEnteros(void *a)
+{
+	printf("%d ", *(int *)a);
 }
