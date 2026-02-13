@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../structures/listadoble/listadoble.h"
-
+// * *//
 int compararEnteros(void *a, void *b);
 void imprimirEnteros(void *a);
 int main()
@@ -27,6 +27,10 @@ int main()
 	insertarInicioD(&listaD, &(int){5});
 	insertarInicioD(&listaD, &(int){10});
 
+	mostrarListaD(listaD);
+	mostrarListaInversoD(listaD);
+
+	insertarFinalD(&listaD, &(int){15});
 	mostrarListaD(listaD);
 
 	return 0;
