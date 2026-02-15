@@ -13,21 +13,30 @@ typedef struct
 	void (*liberar)(void *datoA);
 }ListaD;
 
-ListaD inicializarListaD(void);
-void mostrarListaD(ListaD lista);
-void mostrarListaInversoD(ListaD lista);
+// ListaD inicializarListaD(void);
+// *Imprimir
+void imprimirListaD(ListaD lista); //* Terminadas
+void imprimirListaReversaD(ListaD lista); //* Terminadas
 
-void borrarListaD(ListaD *);
-void borrarDatoD(ListaD *lista,void* dato,int  (*)(void*,void*));
-void eliminarEnPosicionD(ListaD *lista,int pos);
-void* buscarDatoD(ListaD lista,void *dato,int  (*)(void*,void*));
+// *Eliminar
+void eliminarListaD(ListaD *);
+void eliminarPorValorD(ListaD *lista,void* dato,int  (*comparar)(void*,void*));
+void eliminarPorPosicionD(ListaD *lista,int pos);
+void eliminarInicioD(ListaD *lista); //* Terminadas
+void eliminarFinalD(ListaD *lista); //* Terminadas
 
+// *Buscar
+NodoD* buscarPorValorD(ListaD lista,void *dato,int  (*comparar)(void*,void*));
+NodoD* buscarPorPosicionD(ListaD lista, int posicion);
+
+// *Agregar
+void agregarEnOrdenD(ListaD *lista,void* dato);
+void agregarInicioD(ListaD *lista,void* dato); //* Terminadas
+void agregarFinalD(ListaD*,void*); //* Terminadas
+void agregarEnPosicionD(ListaD *lista,void* dato,int pos);
+
+// *Reordenar
 void reordenarD(ListaD *,int  (*)(void*,void*) );
-void insertarOrdenadoD(ListaD *lista,void* dato);
-void insertarInicioD(ListaD *lista,void* dato); //*
-void insertarFinalD(ListaD*,void*);
-void insertarEnPosicionD(ListaD *lista,void* dato,int pos);
-
 
 
 #endif

@@ -2,37 +2,9 @@
 #include <stdio.h>
 #include "../nodos/nododoble.h"
 // todo, borrar lista inicio y borrar lista completa, reordenar, buscar nodo, eliminar final, eliminar posicion, insertar en orden
-void insertarInicioD(ListaD *lista, void *dato)
+// *Imprimir
+void imprimirListaD(ListaD lista)
 {
-  NodoD *nuevo = crearNodoD(dato);
-  // Si la lista esta vacia
-  if(lista->inicio == NULL){
-    lista->inicio = nuevo;
-    lista->fin = nuevo;
-  }else{
-  // Si la lista ya tiene un nodo
-    lista->inicio->anterior = nuevo;
-    nuevo->siguiente = lista->inicio;
-    lista->inicio = nuevo;
-  }
-  lista->cant++;
-}
-void insertarFinalD(ListaD *lista, void *dato)
-{
-  NodoD *nuevo = crearNodoD(dato);
-  // si la lista esta vacia
-  if (lista->inicio == NULL)
-  {
-    insertarInicioD(lista, dato);
-  }else{
-    lista->fin->siguiente = nuevo;
-    nuevo->anterior = lista->fin;
-    lista->fin = nuevo;
-    lista->cant++;
-  }
-
-}
-void mostrarListaD(ListaD lista){
   printf("\n[%d] Lista", lista.cant);
   NodoD *actual = lista.inicio;
   while(actual != NULL){
@@ -41,8 +13,7 @@ void mostrarListaD(ListaD lista){
   }
   printf("\n");
 }
-
-void mostrarListaInversoD(ListaD lista)
+void imprimirListaReversaD(ListaD lista)
 {
   printf("\n");
   NodoD *actual = lista.fin;
@@ -52,30 +23,75 @@ void mostrarListaInversoD(ListaD lista)
   }
   printf("\n");
 }
-void *buscarDatoD(ListaD lista, void *dato, int (*comparar)(void *, void *)){
-  NodoD *actual = lista.inicio;
-  while(actual != NULL){
-    if(comparar(actual->dato, dato) == 0){
-      return actual->dato;
+
+// *Agregar
+void agregarInicioD(ListaD *lista, void *dato)
+{
+  NodoD *nuevo = crearNodoD(dato);
+  // Si la lista esta vacia
+  if (lista->inicio == NULL)
+  {
+    lista->inicio = nuevo;
+    lista->fin = nuevo;
+  }
+  else
+  {
+    // Si la lista ya tiene un nodo
+    lista->inicio->anterior = nuevo;
+    nuevo->siguiente = lista->inicio;
+    lista->inicio = nuevo;
+  }
+  lista->cant++;
+}
+void agregarFinalD(ListaD *lista, void *dato)
+{
+  NodoD *nuevo = crearNodoD(dato);
+  // si la lista esta vacia
+  if (lista->inicio == NULL)
+  {
+    agregarInicioD(lista, dato);
+  }
+  else
+  {
+    lista->fin->siguiente = nuevo;
+    nuevo->anterior = lista->fin;
+    lista->fin = nuevo;
+    lista->cant++;
+  }
+}
+
+// *Eliminar
+void eliminarInicioD(ListaD *lista){
+  if (lista->inicio)
+  {
+    NodoD * auxiliar = lista->inicio;
+    // Si solo hay un nodo
+    if (lista->inicio == lista->fin)
+    {
+      lista->inicio = lista->fin = NULL;
+    }else{
+      lista->inicio = auxiliar->siguiente;
+      lista->inicio->anterior = NULL;
     }
-    actual = actual->siguiente;
+    if(lista->liberar) lista->liberar(auxiliar->dato);
+    free(auxiliar);
+    lista->cant--;
   }
-  return NULL;
-}
 
-void borrarListaD(ListaD *lista){
-  NodoD *actual = lista->inicio;
-  while(actual != NULL){
-    NodoD *siguiente = actual->siguiente;
-    lista->liberar(actual->dato);
-    free(actual);
-    actual = siguiente;
+}
+void eliminarFinalD(ListaD *lista){
+  if (lista->inicio)
+  {
+    if (lista->inicio == lista->fin) // Significa que solo hay un nodo
+    {
+      eliminarInicioD(lista);
+    }else{
+      NodoD *auxiliar = lista->fin->anterior;
+      auxiliar->siguiente = NULL;
+      if (lista->liberar) lista->liberar(lista->fin->dato);
+      free(lista->fin);
+      lista->fin = auxiliar;
+      lista->cant--;
+    }
   }
-  lista->inicio = NULL;
-  lista->fin = NULL;
-  lista->cant = 0;
-}
-
-void borrarInicio(ListaD *lista){
-
 }
