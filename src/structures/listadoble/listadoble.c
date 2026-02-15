@@ -24,6 +24,59 @@ void imprimirListaReversaD(ListaD lista)
   printf("\n");
 }
 
+// *Eliminar
+void eliminarInicioD(ListaD *lista)
+{
+  if (lista->inicio)
+  {
+    NodoD *auxiliar = lista->inicio;
+    // Si solo hay un nodo
+    if (lista->inicio == lista->fin)
+    {
+      lista->inicio = lista->fin = NULL;
+    }
+    else
+    {
+      lista->inicio = auxiliar->siguiente;
+      lista->inicio->anterior = NULL;
+    }
+    if (lista->liberar)
+      lista->liberar(auxiliar->dato);
+    free(auxiliar);
+    lista->cant--;
+  }
+}
+void eliminarFinalD(ListaD *lista)
+{
+  if (lista->inicio)
+  {
+    if (lista->inicio == lista->fin) // Significa que solo hay un nodo
+    {
+      eliminarInicioD(lista);
+    }
+    else
+    {
+      NodoD *auxiliar = lista->fin->anterior;
+      auxiliar->siguiente = NULL;
+      if (lista->liberar)
+        lista->liberar(lista->fin->dato);
+      free(lista->fin);
+      lista->fin = auxiliar;
+      lista->cant--;
+    }
+  }
+}
+
+// *Remover
+void *removerInicioD(ListaD *lista){
+  if(!lista->inicio){
+    return NULL;
+  }
+  void *dato = lista->inicio->dato;
+  eliminarInicioD(lista);
+  return dato;
+}
+
 // *Agregar
 void agregarInicioD(ListaD *lista, void *dato)
 {
@@ -57,41 +110,5 @@ void agregarFinalD(ListaD *lista, void *dato)
     nuevo->anterior = lista->fin;
     lista->fin = nuevo;
     lista->cant++;
-  }
-}
-
-// *Eliminar
-void eliminarInicioD(ListaD *lista){
-  if (lista->inicio)
-  {
-    NodoD * auxiliar = lista->inicio;
-    // Si solo hay un nodo
-    if (lista->inicio == lista->fin)
-    {
-      lista->inicio = lista->fin = NULL;
-    }else{
-      lista->inicio = auxiliar->siguiente;
-      lista->inicio->anterior = NULL;
-    }
-    if(lista->liberar) lista->liberar(auxiliar->dato);
-    free(auxiliar);
-    lista->cant--;
-  }
-
-}
-void eliminarFinalD(ListaD *lista){
-  if (lista->inicio)
-  {
-    if (lista->inicio == lista->fin) // Significa que solo hay un nodo
-    {
-      eliminarInicioD(lista);
-    }else{
-      NodoD *auxiliar = lista->fin->anterior;
-      auxiliar->siguiente = NULL;
-      if (lista->liberar) lista->liberar(lista->fin->dato);
-      free(lista->fin);
-      lista->fin = auxiliar;
-      lista->cant--;
-    }
   }
 }

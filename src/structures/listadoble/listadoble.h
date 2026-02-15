@@ -25,6 +25,9 @@ void eliminarPorPosicionD(ListaD *lista,int pos);
 void eliminarInicioD(ListaD *lista); //* Terminadas
 void eliminarFinalD(ListaD *lista); //* Terminadas
 
+// *Remover
+void *removerInicioD(ListaD *lista);
+
 // *Buscar
 NodoD* buscarPorValorD(ListaD lista,void *dato,int  (*comparar)(void*,void*));
 NodoD* buscarPorPosicionD(ListaD lista, int posicion);
