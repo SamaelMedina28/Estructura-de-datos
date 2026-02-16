@@ -29,7 +29,7 @@ void eliminarFinalD(ListaD *lista); //* Terminadas
 void *removerInicioD(ListaD *lista); //* Terminadas
 
 // *Buscar
-NodoD* buscarPorValorD(ListaD lista,void *dato,int  (*comparar)(void*,void*));
+NodoD* buscarPorValorD(ListaD lista,void *dato,int  (*comparar)(void*,void*)); //* Terminadas
 NodoD* buscarPorPosicionD(ListaD lista, int posicion);
 
 // *Agregar

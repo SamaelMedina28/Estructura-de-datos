@@ -83,9 +83,21 @@ NodoD *buscarPorValorD(ListaD lista, void *dato, int (*comparar)(void *, void *)
   while (nodoActual)
   {
     if (comparar(dato, nodoActual->dato)==0)
-    {
       return nodoActual;
-    }
+    nodoActual = nodoActual->siguiente;
+  }
+  return NULL;
+}
+NodoD *buscarPorPosicionD(ListaD lista, int posicion)
+{
+  int i = 0;
+  NodoD *nodoActual = lista.inicio;
+  while (nodoActual)
+  {
+    if (posicion == i)
+      return nodoActual;
+    nodoActual = nodoActual->siguiente;
+    i++;
   }
   return NULL;
 }
