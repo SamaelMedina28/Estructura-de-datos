@@ -1,5 +1,5 @@
 #include "Alumno.h"
-
+#include <math.h>
 Alumno* crearAlumno(void)
 {
 	Alumno *nuevo = calloc(1,sizeof(Alumno));
@@ -7,7 +7,7 @@ Alumno* crearAlumno(void)
 	inputCadena("\n Nombre: ",nuevo->nombre,LEN);
 	inputEntero("\n Semetres: ",&nuevo->semestre);
 	inputFloat("\n Promedio: ",&nuevo->promedio);
-	return nuevo;	
+	return nuevo;
 }
 
 
@@ -28,25 +28,30 @@ void imprimirAlumno(void *dato)
 int compararMatricula(void *datoA,void *datoB)
 {
 	Alumno *alumA = datoA,*alumB = datoB;
-	return alumA->matricula - alumB->matricula;	
+	return alumA->matricula - alumB->matricula;
 }
 int compararNombre(void *datoA,void *datoB)
 {
 	Alumno *alumA = datoA,*alumB = datoB;
-	return strcmp(alumA->nombre,alumB->nombre);	
+	return strcmp(alumA->nombre,alumB->nombre);
 }
 int compararSemestre(void *datoA,void *datoB)
 {
 	Alumno *alumA = datoA,*alumB = datoB;
-	return alumA->semestre - alumB->semestre;	
-	
+	return alumA->semestre - alumB->semestre;
+
 }
-int compararPromedio(void *datoA,void *datoB)
+int compararPromedio(void *datoA, void *datoB)
 {
-	Alumno *alumA = datoA,*alumB = datoB;
-	if( alumA->promedio < alumB->promedio) return -1;
-	else if( alumA->promedio > alumB->promedio) return 1;
-	else return 0;
+	Alumno *alumA = datoA, *alumB = datoB;
+	if (fabs(alumA->promedio - alumB->promedio) < 0.00001)
+		return 0;
+	if (alumA->promedio < alumB->promedio)
+		return -1;
+	if (alumA->promedio > alumB->promedio)
+		return 1;
+	else
+		return 0;
 }
 int compararAlumno(void *datoA,void *datoB)
 {

@@ -14,31 +14,31 @@ typedef struct
 }ListaD;
 
 // ListaD inicializarListaD(void);
-// *Imprimir
+// !Imprimir
 void imprimirListaD(ListaD lista); //* Terminadas
 void imprimirListaReversaD(ListaD lista); //* Terminadas
 
-// *Eliminar
+// !Eliminar
 void eliminarListaD(ListaD *);
 int eliminarPorValorD(ListaD *lista,void* dato,int  (*comparar)(void*,void*));
 int eliminarPorPosicionD(ListaD *lista,int pos); //* Terminadas
 void eliminarInicioD(ListaD *lista); //* Terminadas
 void eliminarFinalD(ListaD *lista); //* Terminadas
 
-// *Remover
+// !Remover
 void *removerInicioD(ListaD *lista); //* Terminadas
 
-// *Buscar
+// !Buscar
 NodoD* buscarPorValorD(ListaD lista,void *dato,int  (*comparar)(void*,void*)); //* Terminadas
 NodoD *buscarPorPosicionD(ListaD lista, int posicion); //* Terminadas
 
-// *Agregar
+// !Agregar
 void agregarEnOrdenD(ListaD *lista,void* dato);
 void agregarInicioD(ListaD *lista,void* dato); //* Terminadas
 void agregarFinalD(ListaD*,void*); //* Terminadas
 int agregarEnPosicionD(ListaD *lista,void* dato,int pos); //* Terminadas
 
-// *Reordenar
+// !Reordenar
 void reordenarD(ListaD *,int  (*)(void*,void*) );
 
 

@@ -19,12 +19,26 @@ int main()
   int se_elimino = eliminarPorPosicionD(&lista, 3);
   if (se_elimino)
   {
-    printf("\nSe elimino con exito:");
+    printf("\nSe elimino con exito el alumno en la posicion 3:");
     imprimirListaD(lista);
   }
   else
   {
     printf("\nNo se encontro la posicion a eliminar");
+  }
+
+  Alumno alumnoFiltro;
+  alumnoFiltro.promedio=95.5;
+
+  se_elimino = eliminarPorValorD(&lista, &alumnoFiltro, compararPromedio);
+  if (se_elimino)
+  {
+    printf("\nSe elimino con exito el alumno de promedio 95.5:");
+    imprimirListaD(lista);
+  }
+  else
+  {
+    printf("\nNo se encontro el alumno a eliminar");
   }
 
   return 0;

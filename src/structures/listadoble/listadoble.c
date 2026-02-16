@@ -25,6 +25,32 @@ void imprimirListaReversaD(ListaD lista)
 }
 
 // *Eliminar
+int eliminarPorValorD(ListaD *lista, void *dato, int (*comparar)(void *, void *)){
+  NodoD *nodoRemover = buscarPorValorD(*lista, dato, comparar);
+  if (nodoRemover)
+  {
+    if (nodoRemover == lista->inicio)
+    {
+      eliminarInicioD(lista);
+    }
+    else if (nodoRemover == lista->fin)
+    {
+      eliminarFinalD(lista);
+    }
+    else
+    {
+      nodoRemover->anterior->siguiente = nodoRemover->siguiente;
+      nodoRemover->siguiente->anterior = nodoRemover->anterior;
+      if (lista->liberar)
+        lista->liberar(nodoRemover->dato);
+      free(nodoRemover);
+      lista->cant--;
+    }
+    return 1;
+  }
+  return 0;
+}
+
 int eliminarPorPosicionD(ListaD *lista, int pos){
   // Casos posibles:
   NodoD *nodoRemover = buscarPorPosicionD(*lista, pos);
