@@ -26,7 +26,7 @@ void eliminarInicioD(ListaD *lista); //* Terminadas
 void eliminarFinalD(ListaD *lista); //* Terminadas
 
 // *Remover
-void *removerInicioD(ListaD *lista);
+void *removerInicioD(ListaD *lista); //* Terminadas
 
 // *Buscar
 NodoD* buscarPorValorD(ListaD lista,void *dato,int  (*comparar)(void*,void*));

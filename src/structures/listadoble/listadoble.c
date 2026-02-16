@@ -77,6 +77,19 @@ void *removerInicioD(ListaD *lista){
   return dato;
 }
 
+// *Buscar
+NodoD *buscarPorValorD(ListaD lista, void *dato, int (*comparar)(void *, void *)){
+  NodoD *nodoActual = lista.inicio;
+  while (nodoActual)
+  {
+    if (comparar(dato, nodoActual->dato)==0)
+    {
+      return nodoActual;
+    }
+  }
+  return NULL;
+}
+
 // *Agregar
 void agregarInicioD(ListaD *lista, void *dato)
 {
