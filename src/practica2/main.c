@@ -28,7 +28,7 @@ int main()
   }
 
   Alumno alumnoFiltro;
-  alumnoFiltro.promedio=95.5;
+  alumnoFiltro.promedio=12.3;
 
   se_elimino = eliminarPorValorD(&lista, &alumnoFiltro, compararPromedio);
   if (se_elimino)
@@ -40,6 +40,11 @@ int main()
   {
     printf("\nNo se encontro el alumno a eliminar");
   }
+
+
+  printf("\nEliminando la lista completa: ");
+  eliminarListaD(&lista);
+  imprimirListaD(lista);
 
   return 0;
 }

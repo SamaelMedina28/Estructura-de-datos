@@ -5,11 +5,19 @@
 // *Imprimir
 void imprimirListaD(ListaD lista)
 {
-  printf("\n[%d] Lista", lista.cant);
-  NodoD *actual = lista.inicio;
-  while(actual != NULL){
-    lista.imprimir(actual->dato);
-    actual = actual->siguiente;
+  if (lista.inicio == NULL)
+  {
+    printf("\nLa lista esta vacia");
+  }
+  else
+  {
+    printf("\n[%d] Lista", lista.cant);
+    NodoD *actual = lista.inicio;
+    while (actual != NULL)
+    {
+      lista.imprimir(actual->dato);
+      actual = actual->siguiente;
+    }
   }
   printf("\n");
 }
@@ -17,7 +25,8 @@ void imprimirListaReversaD(ListaD lista)
 {
   printf("\n");
   NodoD *actual = lista.fin;
-  while(actual != NULL){
+  while (actual != NULL)
+  {
     lista.imprimir(actual->dato);
     actual = actual->anterior;
   }
@@ -25,7 +34,15 @@ void imprimirListaReversaD(ListaD lista)
 }
 
 // *Eliminar
-int eliminarPorValorD(ListaD *lista, void *dato, int (*comparar)(void *, void *)){
+void eliminarListaD(ListaD *lista)
+{
+  while (lista->inicio)
+  {
+    eliminarInicioD(lista);
+  }
+}
+int eliminarPorValorD(ListaD *lista, void *dato, int (*comparar)(void *, void *))
+{
   NodoD *nodoRemover = buscarPorValorD(*lista, dato, comparar);
   if (nodoRemover)
   {
@@ -50,18 +67,23 @@ int eliminarPorValorD(ListaD *lista, void *dato, int (*comparar)(void *, void *)
   }
   return 0;
 }
-
-int eliminarPorPosicionD(ListaD *lista, int pos){
+int eliminarPorPosicionD(ListaD *lista, int pos)
+{
   // Casos posibles:
   NodoD *nodoRemover = buscarPorPosicionD(*lista, pos);
   // Solo seria null si la posicion que ingresamos no es valida
   if (nodoRemover)
   {
-    if(nodoRemover==lista->inicio){
+    if (nodoRemover == lista->inicio)
+    {
       eliminarInicioD(lista);
-    }else if(nodoRemover==lista->fin){
+    }
+    else if (nodoRemover == lista->fin)
+    {
       eliminarFinalD(lista);
-    }else{
+    }
+    else
+    {
       nodoRemover->anterior->siguiente = nodoRemover->siguiente;
       nodoRemover->siguiente->anterior = nodoRemover->anterior;
       if (lista->liberar)
@@ -116,8 +138,10 @@ void eliminarFinalD(ListaD *lista)
 }
 
 // *Remover
-void *removerInicioD(ListaD *lista){
-  if(!lista->inicio){
+void *removerInicioD(ListaD *lista)
+{
+  if (!lista->inicio)
+  {
     return NULL;
   }
   void *dato = lista->inicio->dato;
@@ -126,11 +150,12 @@ void *removerInicioD(ListaD *lista){
 }
 
 // *Buscar
-NodoD *buscarPorValorD(ListaD lista, void *dato, int (*comparar)(void *, void *)){
+NodoD *buscarPorValorD(ListaD lista, void *dato, int (*comparar)(void *, void *))
+{
   NodoD *nodoActual = lista.inicio;
   while (nodoActual)
   {
-    if (comparar(dato, nodoActual->dato)==0)
+    if (comparar(dato, nodoActual->dato) == 0)
       return nodoActual;
     nodoActual = nodoActual->siguiente;
   }
@@ -185,19 +210,25 @@ void agregarFinalD(ListaD *lista, void *dato)
     lista->cant++;
   }
 }
-int agregarEnPosicionD(ListaD *lista, void *dato, int pos){
+int agregarEnPosicionD(ListaD *lista, void *dato, int pos)
+{
   if (lista->cant == pos) // SI no tiene nodos o si se quiere agregar al final
   {
     agregarFinalD(lista, dato);
     return 1;
-  }else{
+  }
+  else
+  {
     NodoD *nodoEnPosicion = buscarPorPosicionD(*lista, pos);
     if (!nodoEnPosicion)
       return 0;
-    if(nodoEnPosicion==lista->inicio){
+    if (nodoEnPosicion == lista->inicio)
+    {
       agregarInicioD(lista, dato);
       return 1;
-    }else{
+    }
+    else
+    {
       NodoD *nodoCreado = crearNodoD(dato);
       nodoCreado->anterior = nodoEnPosicion->anterior;
       nodoEnPosicion->anterior->siguiente = nodoCreado;
