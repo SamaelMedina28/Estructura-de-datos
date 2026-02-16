@@ -41,8 +41,8 @@ int eliminarPorPosicionD(ListaD *lista, int pos){
       if (lista->liberar)
         lista->liberar(nodoRemover->dato);
       free(nodoRemover);
+      lista->cant--;
     }
-    lista->cant--;
     return 1;
   }
   return 0;
