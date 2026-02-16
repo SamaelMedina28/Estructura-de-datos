@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include "../structures/listadoble/listadoble.h"
 #include "Alumno.h"
-// * *//
-int compararEnteros(void *a, void *b);
-void imprimirEnteros(void *a);
 int main()
 {
 	printf("Listas doblemente enlazadas\n");
@@ -17,12 +14,9 @@ int main()
 
 	agregarInicioD(&lista, a);
 	agregarInicioD(&lista, b);
-	agregarFinalD(&lista, c);
+	agregarInicioD(&lista, c);
 	imprimirListaD(lista);
-	imprimirListaReversaD(lista);
-	eliminarInicioD(&lista);
-	imprimirListaD(lista);
-	eliminarFinalD(&lista);
+	eliminarPorPosicionD(&lista, 2);
 	imprimirListaD(lista);
 
 	return 0;
