@@ -159,3 +159,26 @@ void agregarFinalD(ListaD *lista, void *dato)
     lista->cant++;
   }
 }
+int agregarEnPosicionD(ListaD *lista, void *dato, int pos){
+  if (lista->cant == pos) // SI no tiene nodos o si se quiere agregar al final
+  {
+    agregarFinalD(lista, dato);
+    return 1;
+  }else{
+    NodoD *nodoEnPosicion = buscarPorPosicionD(*lista, pos);
+    if (!nodoEnPosicion)
+      return 0;
+    if(nodoEnPosicion==lista->inicio){
+      agregarInicioD(lista, dato);
+      return 1;
+    }else{
+      NodoD *nodoCreado = crearNodoD(dato);
+      nodoCreado->anterior = nodoEnPosicion->anterior;
+      nodoEnPosicion->anterior->siguiente = nodoCreado;
+      nodoCreado->siguiente = nodoEnPosicion;
+      nodoEnPosicion->anterior = nodoCreado;
+      lista->cant++;
+      return 1;
+    }
+  }
+}
