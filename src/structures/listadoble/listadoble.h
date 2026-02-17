@@ -19,7 +19,7 @@ void imprimirListaD(ListaD lista); //* Terminadas
 void imprimirListaReversaD(ListaD lista); //* Terminadas
 
 // !Eliminar
-void eliminarListaD(ListaD *);
+void eliminarListaD(ListaD *); //* Terminadas
 int eliminarPorValorD(ListaD *lista,void* dato,int  (*comparar)(void*,void*)); //* Terminadas
 int eliminarPorPosicionD(ListaD *lista,int pos); //* Terminadas
 void eliminarInicioD(ListaD *lista); //* Terminadas

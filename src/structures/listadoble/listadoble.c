@@ -176,6 +176,48 @@ NodoD *buscarPorPosicionD(ListaD lista, int posicion)
 }
 
 // *Agregar
+void agregarEnOrdenD(ListaD *lista, void *dato)
+{
+  NodoD *nodoCreado = crearNodoD(dato);
+  if (!lista->inicio)
+  {
+    lista->inicio = lista->fin = nodoCreado;
+  }
+  else
+  {
+    NodoD *nodoActual = lista->inicio;
+    while (nodoActual)
+    {
+      // si el nodo que creamos es menor
+      if (lista->comparar(nodoCreado->dato, nodoActual->dato) < 0)
+      {
+        if (nodoActual == lista->inicio)
+        {
+          nodoCreado->siguiente = nodoActual;
+          nodoActual->anterior = nodoCreado;
+          lista->inicio = nodoCreado;
+        }
+        else
+        {
+          nodoActual->anterior->siguiente = nodoCreado;
+          nodoCreado->anterior = nodoActual->anterior;
+          nodoCreado->siguiente = nodoActual;
+          nodoActual->anterior = nodoCreado;
+        }
+        break;
+      }
+      else if (nodoActual == lista->fin)
+      {
+        nodoActual->siguiente = nodoCreado;
+        nodoCreado->anterior = nodoActual;
+        lista->fin = nodoCreado;
+        break;
+      }
+      nodoActual = nodoActual->siguiente;
+    }
+  }
+  lista->cant++;
+}
 void agregarInicioD(ListaD *lista, void *dato)
 {
   NodoD *nuevo = crearNodoD(dato);

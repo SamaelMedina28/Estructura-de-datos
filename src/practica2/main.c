@@ -12,38 +12,9 @@ int main()
 
   ListaD lista = {NULL, NULL, 0, compararMatricula, imprimirAlumno, free};
 
-  agregarInicioD(&lista, a);
-  agregarInicioD(&lista, b);
-  agregarInicioD(&lista, c);
-  imprimirListaD(lista);
-  int se_elimino = eliminarPorPosicionD(&lista, 3);
-  if (se_elimino)
-  {
-    printf("\nSe elimino con exito el alumno en la posicion 3:");
-    imprimirListaD(lista);
-  }
-  else
-  {
-    printf("\nNo se encontro la posicion a eliminar");
-  }
-
-  Alumno alumnoFiltro;
-  alumnoFiltro.promedio=12.3;
-
-  se_elimino = eliminarPorValorD(&lista, &alumnoFiltro, compararPromedio);
-  if (se_elimino)
-  {
-    printf("\nSe elimino con exito el alumno de promedio 95.5:");
-    imprimirListaD(lista);
-  }
-  else
-  {
-    printf("\nNo se encontro el alumno a eliminar");
-  }
-
-
-  printf("\nEliminando la lista completa: ");
-  eliminarListaD(&lista);
+  agregarEnOrdenD(&lista, a);
+  agregarEnOrdenD(&lista, b);
+  agregarEnOrdenD(&lista, c);
   imprimirListaD(lista);
 
   return 0;
