@@ -141,10 +141,9 @@ void eliminarFinalD(ListaD *lista)
 void *removerInicioD(ListaD *lista)
 {
   if (!lista->inicio)
-  {
     return NULL;
-  }
   void *dato = lista->inicio->dato;
+  lista->inicio->dato = NULL;
   eliminarInicioD(lista);
   return dato;
 }
@@ -280,4 +279,18 @@ int agregarEnPosicionD(ListaD *lista, void *dato, int pos)
       return 1;
     }
   }
+}
+
+// *Reordenar
+void reordenarD(ListaD *lista, int (*comparar)(void *, void *))
+{
+  ListaD aux = {NULL, NULL, 0, comparar, lista->imprimir, lista->liberar};
+
+  while (lista->inicio)
+  {
+    void *dato = removerInicioD(lista);
+    agregarEnOrdenD(&aux, dato);
+  }
+
+  *lista = aux;
 }

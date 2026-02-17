@@ -33,13 +33,12 @@ NodoD* buscarPorValorD(ListaD lista,void *dato,int  (*comparar)(void*,void*)); /
 NodoD *buscarPorPosicionD(ListaD lista, int posicion); //* Terminadas
 
 // !Agregar
-void agregarEnOrdenD(ListaD *lista,void* dato);
+void agregarEnOrdenD(ListaD *lista, void *dato); //* Terminadas
 void agregarInicioD(ListaD *lista,void* dato); //* Terminadas
 void agregarFinalD(ListaD*,void*); //* Terminadas
 int agregarEnPosicionD(ListaD *lista,void* dato,int pos); //* Terminadas
 
 // !Reordenar
-void reordenarD(ListaD *,int  (*)(void*,void*) );
-
+void reordenarD(ListaD *lista, int (*comparar)(void *, void *)); //* Terminadas
 
 #endif

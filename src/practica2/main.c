@@ -17,5 +17,8 @@ int main()
   agregarEnOrdenD(&lista, c);
   imprimirListaD(lista);
 
+  reordenarD(&lista, compararPromedio);
+  imprimirListaD(lista);
+
   return 0;
 }
