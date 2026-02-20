@@ -146,3 +146,16 @@ void ordenarPila(Pila *pila, int (*comparar)(void *, void *))
     pushDato(pila, popDato(&aux));
   }
 }
+// Verificar si una cadena es palindromo
+int esPalindromo(char *cadena){
+  Pila pila = {NULL,0,-1,NULL,NULL};
+  for(int i =0; cadena[i]!='\0';i++)
+    pushDato(&pila, &cadena[i]);
+  for (int i = 0; cadena[i] != '\0'; i++)
+  {
+    char *letra = popDato(&pila);
+    if (*letra!=cadena[i])
+      return 0;
+  }
+  return 1;
+}
