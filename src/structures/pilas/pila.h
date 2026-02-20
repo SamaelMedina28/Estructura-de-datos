@@ -32,3 +32,6 @@ void pushDatoOrdenado(Pila *pila, void *dato, int (*comparar)(void *, void *));
 //ORDENAR
 void ordenarPila(Pila *pila, int (*comparar)(void *, void *));
 #endif
+// Checar reglas de parentesis
+int verificarParentesis(char *cadena);
+int esPalindromo(char *cadena);

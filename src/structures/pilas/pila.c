@@ -131,7 +131,7 @@ void ordenarPila(Pila *pila, int (*comparar)(void *, void *))
   {
     void *dato = popDato(pila);
 
-    // Insertar de manera ordenada en aux
+    // Solo insertamos en la pila auxiliar  si el dato que pasamos de la pila original a la cima de la pila auxiliar es menor que el ultimo dato de la pila original
     while (!pilaVacia(aux) && comparar(aux.cima->dato, dato) < 0)
     {
       pushDato(pila, popDato(&aux));
