@@ -15,7 +15,10 @@ int main(){
   Pila pila = {NULL,0,-1,imprimirEntero,NULL};
 	int arreglo[7] = {8, 5, 6, 10, 2, 3, 9};
 	for(int i=0; i<7;i++)
-		pushDatoOrdenado(&pila, &arreglo[i], compararNumeros);
-
+		pushDato(&pila, &arreglo[i]);
+	printf("\nPila original:");
+	imprimirPila(pila);
+	printf("\n\nPila ordenada:");
+	ordenarPila(&pila, compararNumeros);
 	imprimirPila(pila);
 }
