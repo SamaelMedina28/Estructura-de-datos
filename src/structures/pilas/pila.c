@@ -42,14 +42,14 @@ void pushNodo(Pila *pila, Nodo *nodo) {
   pila->cantidad++;
 }
 
-void pushOrdenado(Pila *pila, void *dato)
+void pushDatoOrdenado(Pila *pila, void *dato, int (*comparar)(void *, void *))
 {
     if(pilaLlena(*pila))
         return;
 
     Pila aux = {NULL, 0, pila->capacidad, pila->liberar, pila->imprimir};
 
-    while(!pilaVacia(*pila) && pila->comparar(pila->cima->dato, dato) < 0)
+    while(!pilaVacia(*pila) && comparar(pila->cima->dato, dato) > 0)
     {
         pushDato(&aux, popDato(pila));
     }

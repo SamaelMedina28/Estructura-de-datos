@@ -3,7 +3,7 @@ dflags = -Wall -Werror -pedantic -std=c99 -g
 includes = -I ../iostring -I ../structures/listadoble -I ../structures/pilas
 libs = ../../lib -liostring -lListaDoble -lPila
 source = $(wildcard *.c)
-output = ../../bin/practica3
+output = ../../bin/taller2
 
 build :
 	gcc $(cflags) $(source) -o $(output) $(includes) -L $(libs)

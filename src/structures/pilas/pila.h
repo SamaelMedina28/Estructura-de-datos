@@ -27,5 +27,6 @@ void vaciarPila(Pila *pila);
 void eliminarPila(Pila *pila);
 //IMPRIMIR
 void imprimirPila(Pila pila);
-
+//PUSH ORDENADO
+void pushDatoOrdenado(Pila *pila, void *dato, int (*comparar)(void *, void *));
 #endif
