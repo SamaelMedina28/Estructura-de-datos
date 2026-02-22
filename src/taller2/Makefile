@@ -9,9 +9,9 @@ build :
 	gcc $(cflags) $(source) -o $(output) $(includes) -L $(libs)
 	@echo "Compilo Exitosamente!!!"
 rebuild:
-	make -C ..\iostring
-	make -C ..\structures\nodos
-	make -C ..\structures\listadoble
-	make -C ..\structures\pilas
+	make -C ../iostring
+	make -C ../structures/nodos
+	make -C ../structures/listadoble
+	make -C ../structures/pilas
 	gcc $(cflags) $(source) -o $(output) $(includes) -L $(libs)
 	@echo "Compilo Exitosamente!!!"

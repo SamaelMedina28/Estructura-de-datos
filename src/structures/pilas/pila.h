@@ -2,7 +2,7 @@
 #define PILA_H
 
 #include <stdio.h>
-#include "..\nodos\nodo.h"
+#include "../nodos/nodo.h"
 
 typedef struct
 {
