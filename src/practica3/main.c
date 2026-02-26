@@ -5,7 +5,7 @@
 #define MAX 100
 
 int palindromo(char *cadena);
-// int verificarParentesis(char *cadena);
+int verificarParentesis(char *cadena);
 void quitarEspacios(char *);
 
 int main(void)
@@ -15,8 +15,8 @@ int main(void)
   inputCadenaDinamica("\n Captura cadena: ", &cadena, MAX);
   printf(" Es palindromo: %s", palindromo(cadena) ? "SI" : "NO");
 
-  // inputCadenaDinamica("\n\n Captura expresion: ", &cadena, MAX);
-  // printf(" Parentesis correctos : %s", verificarParentesis(cadena) ? "SI" : "NO");
+  inputCadenaDinamica("\n\n Captura expresion: ", &cadena, MAX);
+  printf(" Parentesis correctos : %s", verificarParentesis(cadena) ? "SI" : "NO");
 
   free(cadena);
   printf("\n\n FIN DE PROGRAMA");
@@ -52,8 +52,36 @@ void quitarEspacios(char *cadena)
   cadena[j] = '\0';
 }
 
-// int verificarParentesis(char *cadena)
-// {
-//   Pila pila = {NULL, 0, -1, NULL, NULL};
-//   return 0;
-// }
+int verificarParentesis(char *cadena)
+{
+  Pila pila = {NULL, 0, -1, NULL, NULL};
+
+  for (int i = 0; cadena[i] != '\0'; i++)
+  {
+    char signo = cadena[i];
+
+    // Si es abre, lo metemos
+    if (signo == '(' || signo == '{' || signo == '[')
+    {
+      pushDato(&pila, &cadena[i]);
+    }
+    // Si es cierra, verificamos que coincida con el tope
+    else if (signo == ')' || signo == '}' || signo == ']')
+    {
+      if (pilaVacia(pila)) // pila vacía, no hay pareja
+        return 0;
+
+      char *cima = popDato(&pila);
+
+      if (signo == ')' && *cima != '(')
+        return 0;
+      if (signo == '}' && *cima != '{')
+        return 0;
+      if (signo == ']' && *cima != '[')
+        return 0;
+    }
+  }
+
+  // Al final la pila debe estar vacía
+  return pilaVacia(pila);
+}
