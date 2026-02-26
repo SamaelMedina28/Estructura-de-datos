@@ -39,6 +39,7 @@ int palindromo(char *cadena)
   return 1;
 }
 
+// Funcion para quitar espacios de una cadena de texto
 void quitarEspacios(char *cadena)
 {
   int j = 0;
@@ -52,13 +53,14 @@ void quitarEspacios(char *cadena)
   cadena[j] = '\0';
 }
 
+// Funcion de verificar parentesis
 int verificarParentesis(char *cadena)
 {
   Pila pila = {NULL, 0, -1, NULL, NULL};
 
   for (int i = 0; cadena[i] != '\0'; i++)
   {
-    char signo = cadena[i]; 
+    char signo = cadena[i];
 
     // Si es abre, lo metemos
     if (signo == '(' || signo == '{' || signo == '[')
