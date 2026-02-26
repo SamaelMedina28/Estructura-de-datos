@@ -58,7 +58,7 @@ int verificarParentesis(char *cadena)
 
   for (int i = 0; cadena[i] != '\0'; i++)
   {
-    char signo = cadena[i];
+    char signo = cadena[i]; 
 
     // Si es abre, lo metemos
     if (signo == '(' || signo == '{' || signo == '[')
