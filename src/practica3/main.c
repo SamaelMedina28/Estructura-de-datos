@@ -57,11 +57,9 @@ void quitarEspacios(char *cadena)
 int verificarParentesis(char *cadena)
 {
   Pila pila = {NULL, 0, -1, NULL, NULL};
-
   for (int i = 0; cadena[i] != '\0'; i++)
   {
     char signo = cadena[i];
-
     // Si es abre, lo metemos
     if (signo == '(' || signo == '{' || signo == '[')
     {
@@ -72,18 +70,13 @@ int verificarParentesis(char *cadena)
     {
       if (pilaVacia(pila)) // pila vacía, no hay pareja
         return 0;
-
-      char *cima = popDato(&pila);
-
-      if (signo == ')' && *cima != '(')
-        return 0;
-      if (signo == '}' && *cima != '{')
-        return 0;
-      if (signo == ']' && *cima != '[')
+      char *parejaSigno = popDato(&pila);
+      if ((signo == ')' && *parejaSigno != '(') ||
+          (signo == '}' && *parejaSigno != '{') ||
+          (signo == '] ' && *parejaSigno != '['))
         return 0;
     }
   }
-
   // Al final la pila debe estar vacía
   return pilaVacia(pila);
 }

@@ -1,6 +1,6 @@
 cflags = -Wall -Werror -pedantic -std=c99 -O2
 dflags = -Wall -Werror -pedantic -std=c99 -g
-includes = -I ../iostring -I ../structures/listadoble -I ../structures/pilas
+includes = -I ../iostring -I ../structures/listadoble -I ../structures/pila
 libs = ../../lib -liostring -lListaDoble -lPila
 source = $(wildcard *.c)
 output = ../../bin/taller2
@@ -12,6 +12,6 @@ rebuild:
 	make -C ../iostring
 	make -C ../structures/nodos
 	make -C ../structures/listadoble
-	make -C ../structures/pilas
+	make -C ../structures/pila
 	gcc $(cflags) $(source) -o $(output) $(includes) -L $(libs)
 	@echo "Compilo Exitosamente!!!"
