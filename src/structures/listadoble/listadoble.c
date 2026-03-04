@@ -13,10 +13,12 @@ void imprimirListaD(ListaD lista)
   {
     printf("\n[%d] Lista", lista.cant);
     NodoD *actual = lista.inicio;
-    while (actual != NULL)
+    int i = 0;
+    while (actual != NULL && i<lista.cant)
     {
       lista.imprimir(actual->dato);
       actual = actual->siguiente;
+      i++;
     }
   }
   printf("\n");

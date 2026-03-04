@@ -36,6 +36,7 @@ int main()
     }
     case 2: /* Desplegar alumnos */
       imprimirListaD(lista);
+      imprimirListaReversaD(lista);
       break;
     case 3:
     { /* Reordenar */
@@ -142,4 +143,3 @@ void menu(void)
   printf("5. Borrar Alumno\n");
   printf("6. Finalizar programa\n");
 }
-

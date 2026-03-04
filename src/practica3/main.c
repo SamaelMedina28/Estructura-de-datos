@@ -73,7 +73,7 @@ int verificarParentesis(char *cadena)
       char *parejaSigno = popDato(&pila);
       if ((signo == ')' && *parejaSigno != '(') ||
           (signo == '}' && *parejaSigno != '{') ||
-          (signo == '] ' && *parejaSigno != '['))
+          (signo == ']' && *parejaSigno != '['))
         return 0;
     }
   }
