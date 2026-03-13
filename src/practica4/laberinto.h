@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef unsigned char **Laberinto;
+
 typedef struct
 {
   int x, y;
@@ -22,7 +24,7 @@ typedef struct
   int up, down, left, right;
 } Movimientos;
 
-unsigned char **crear_laberinto(void);
+Laberinto crear_laberinto(void);
 void imprimirLab(unsigned char **lab);
 
 Coordenada *crearCoordenada(int x, int y);
@@ -35,4 +37,9 @@ void imprimirPosibles(unsigned char);
 Movimientos movimientosPosibles(unsigned char **lab, Coordenada punto);
 void imprimirMovimientos(Movimientos movimientos);
 
+
+// Prueba para cambiar de coordenadas en el laberinto
+void setOrigen(Laberinto lab, Coordenada origen);
+void setDestino(Laberinto lab, Coordenada destino);
+void setAoB(Laberinto lab, Coordenada punto, char caracter);
 #endif

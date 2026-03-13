@@ -6,8 +6,12 @@
 int main(void)
 {
   int i, j;
-  unsigned char **lab;
-  lab = crear_laberinto();
+  Laberinto lab = crear_laberinto();
+
+  Coordenada* nuevoDestino = crearCoordenada(3,24);
+  Coordenada* nuevoOrigen = crearCoordenada(25,1);
+  setDestino(lab, *nuevoDestino);
+  setOrigen(lab, *nuevoOrigen);
 
   Coordenada inicio = {-1, -1};
   for (i = 0; i < REN; i++) {
@@ -37,7 +41,6 @@ int main(void)
   int dy[] = {0, 0, 1, -1};
 
   while (!pilaVacia(pila)) {
-    // Observamos el tope de la pila sin sacarlo (Peek)
     actual = (Coordenada *)pila.cima->dato;
 
     if (lab[actual->x][actual->y] == 'B') {
@@ -65,7 +68,7 @@ int main(void)
       }
     }
 
-    // Si no pudimos movernos, estamos en un callejón sin salida
+    // Si no pudimos movernos, estamos en un camino sin salida
     if (!movido) {
       actual = (Coordenada *)popDato(&pila);
       if (lab[actual->x][actual->y] == '.') {
@@ -78,7 +81,7 @@ int main(void)
   imprimirLab(lab);
 
   if (encontrado) {
-    printf("\n\n¡Salida encontrada!\n");
+    printf("\n\nSalida encontrada\n");
   } else {
     printf("\n\nNo se encontro salida.\n");
   }

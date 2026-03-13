@@ -35,7 +35,7 @@ void imprimirMovimientos(Movimientos movimientos)
     printf(" IZQUIERDA");
 }
 
-unsigned char **crear_laberinto(void)
+Laberinto crear_laberinto(void)
 {
   int i, j;
   char *tmp =
@@ -123,4 +123,27 @@ int compararCoordenada(void *a, void *b)
   if (aa->x == bb->x && aa->y == bb->y)
     return 1;
   return 0;
+}
+void setAoB(Laberinto lab, Coordenada punto, char caracter)
+{
+  for (int i = 0; i < REN; i++)
+  {
+    for (int j = 0; j < COL; j++)
+    {
+      if (lab[i][j] == caracter)
+        lab[i][j] = '*';
+      if (i == punto.x && j == punto.y)
+        lab[i][j] = caracter;
+    }
+  }
+}
+
+void setOrigen(Laberinto lab, Coordenada origen)
+{
+  setAoB(lab, origen, 'A');
+}
+
+void setDestino(Laberinto lab, Coordenada destino)
+{
+  setAoB(lab, destino, 'B');
 }
