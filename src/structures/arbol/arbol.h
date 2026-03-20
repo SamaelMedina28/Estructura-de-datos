@@ -33,5 +33,6 @@ void eliminarArbol(Arbol *arbol);
 void insertarArbol(Arbol *arbol,void *dato);
 void imprimirArbol(Arbol arbol);
 void imprimirOrden(Arbol arbol,int opcion);
-
+void invertirArbol(Arbol *arbol);
+void* buscarEnArbol(Arbol arbol, void* dato);
 #endif

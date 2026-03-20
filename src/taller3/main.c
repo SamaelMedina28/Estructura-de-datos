@@ -16,12 +16,7 @@ void myprintf(char *msg, char *formato, ...);
 
 int main(void)
 {
-  Arbol arbol;
-  arbol.raiz = NULL;
-  arbol.cantidad = 0;
-  arbol.imprimir = &imprimirEntero;
-  arbol.comparar = &compararEntero;
-  arbol.liberar = &free;
+  Arbol arbol = {NULL, 0, &imprimirEntero, &compararEntero, &free};
 
   insertarArbol(&arbol, crearEntero(9));
   insertarArbol(&arbol, crearEntero(8));
@@ -42,9 +37,24 @@ int main(void)
   insertarArbol(&arbol, crearEntero(1));
   insertarArbol(&arbol, crearEntero(0));
 
-  printf("\n");
+  printf("\nArbol original:\n");
   imprimirArbol(arbol);
-  // myprintf("Hola","dcfx",1);
+
+  int *valor = crearEntero(71);
+
+  int *resultado = buscarEnArbol(arbol, valor);
+
+  if (resultado)
+    printf("\nEncontrado: %d\n", *resultado);
+  else
+    printf("\nNo encontrado\n");
+
+  free(valor);
+  invertirArbol(&arbol);
+
+  printf("\n\nArbol invertido:\n");
+  imprimirArbol(arbol);
+
 
   eliminarArbol(&arbol);
   printf("\n\n FIN DE PROGRAMA\n");
@@ -73,32 +83,4 @@ void imprimirEntero(void *a)
 {
   int *aa = a;
   printf("%d", *aa);
-}
-
-void myprintf(char *msg, char *formato, ...)
-{
-  va_list args;
-  va_start(args, formato);
-  printf("\n %s ", msg);
-  char *ptr = formato;
-  while (*ptr != '\0')
-  {
-    switch (*ptr)
-    {
-    case 'd':
-      printf("%d ", va_arg(args, int));
-      break;
-    case 'c':
-      printf("%c ", va_arg(args, int));
-      break;
-    case 'f':
-      printf("%f ", va_arg(args, double));
-      break;
-    case 'x':
-      printf("%x ", va_arg(args, Arbol *));
-      break;
-    }
-    ptr++;
-  }
-  va_end(args);
 }

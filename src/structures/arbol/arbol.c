@@ -2,6 +2,7 @@
 
 void insertarArbolOrdenado(NodoA *raiz, void *dato, int (*comparar)(void *, void *))
 {
+  // si el dato que queremos agregar es menor o igual a la raiz
   if (comparar(dato, raiz->dato) <= 0)
   {
     // IZQUIERDA
@@ -12,6 +13,7 @@ void insertarArbolOrdenado(NodoA *raiz, void *dato, int (*comparar)(void *, void
     else
       insertarArbolOrdenado(raiz->izq, dato, comparar);
   }
+  // si el dato que queremos agregar es mayor a la raiz
   else
   {
     // DERECHA
@@ -152,4 +154,43 @@ void eliminarArbol(Arbol *arbol)
   eliminar_NodosA(arbol->raiz, arbol->liberar);
   arbol->raiz = NULL;
   arbol->cantidad = 0;
+}
+
+
+void invertirRamas(NodoA *raiz)
+{
+    if (!raiz)
+        return;
+
+    NodoA *aux = raiz->izq;
+    raiz->izq = raiz->dch;
+    raiz->dch = aux;
+
+    invertirRamas(raiz->izq);
+    invertirRamas(raiz->dch);
+}
+
+void invertirArbol(Arbol *arbol)
+{
+    invertirRamas(arbol->raiz);
+}
+void* buscarEnArbol(Arbol arbol, void *dato)
+{
+    NodoA *raiz = arbol.raiz;
+
+    while (raiz)
+    {
+        int cmp = arbol.comparar(raiz->dato, dato);
+
+        if (cmp == 0)
+            return raiz->dato;
+
+        else if (cmp > 0)
+            raiz = raiz->izq;
+
+        else
+            raiz = raiz->dch;
+    }
+
+    return NULL;
 }
