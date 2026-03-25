@@ -194,3 +194,57 @@ void* buscarEnArbol(Arbol arbol, void *dato)
 
     return NULL;
 }
+NodoA *eliminarNodo(NodoA *raiz, void *dato, int (*comparar)(void *, void *), int *eliminado)
+{
+  if (!raiz)
+    return NULL;
+
+  int cmp = comparar(dato, raiz->dato);
+
+  if (cmp < 0)
+  {
+    raiz->izq = eliminarNodo(raiz->izq, dato, comparar, eliminado);
+  }
+  else if (cmp > 0)
+  {
+    raiz->dch = eliminarNodo(raiz->dch, dato, comparar, eliminado);
+  }
+  else
+  {
+    *eliminado = 1;
+
+    // Caso 1: sin hijos o un hijo
+    if (!raiz->izq)
+    {
+      NodoA *temp = raiz->dch;
+      free(raiz->dato);
+      free(raiz);
+      return temp;
+    }
+    else if (!raiz->dch)
+    {
+      NodoA *temp = raiz->izq;
+      free(raiz->dato);
+      free(raiz);
+      return temp;
+    }
+
+    // Caso 2: dos hijos - encontrar el sucesor inorden (mínimo del subárbol derecho)
+    NodoA *temp = raiz->dch;
+    while (temp->izq)
+    {
+      temp = temp->izq;
+    }
+
+    // Copiar los datos del sucesor al nodo actual
+    void *nuevoDato = (int *)malloc(sizeof(int));
+    *(int *)nuevoDato = *(int *)temp->dato;
+    free(raiz->dato);
+    raiz->dato = nuevoDato;
+
+    // Eliminar el sucesor
+    raiz->dch = eliminarNodo(raiz->dch, temp->dato, comparar, eliminado);
+  }
+
+  return raiz;
+}

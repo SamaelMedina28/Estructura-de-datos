@@ -28,6 +28,7 @@ typedef struct
 	void (*liberar)(void*);
 }Arbol;
 
+NodoA *eliminarNodo(NodoA *raiz, void *dato, int (*comparar)(void *, void *), int *eliminado);
 
 void eliminarArbol(Arbol *arbol);
 void insertarArbol(Arbol *arbol,void *dato);
@@ -35,4 +36,5 @@ void imprimirArbol(Arbol arbol);
 void imprimirOrden(Arbol arbol,int opcion);
 void invertirArbol(Arbol *arbol);
 void* buscarEnArbol(Arbol arbol, void* dato);
+void eliminar_NodosA(NodoA *raiz, void (*liberar)(void *));
 #endif
