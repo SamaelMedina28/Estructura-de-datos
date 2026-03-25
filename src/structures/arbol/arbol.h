@@ -29,6 +29,8 @@ typedef struct
 }Arbol;
 
 NodoA *eliminarNodo(NodoA *raiz, void *dato, int (*comparar)(void *, void *), int *eliminado);
+// Función para calcular altura de un árbol
+int calcularAltura(NodoA *raiz);
 
 void eliminarArbol(Arbol *arbol);
 void insertarArbol(Arbol *arbol,void *dato);

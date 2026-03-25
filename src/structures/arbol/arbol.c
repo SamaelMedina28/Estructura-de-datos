@@ -248,3 +248,14 @@ NodoA *eliminarNodo(NodoA *raiz, void *dato, int (*comparar)(void *, void *), in
 
   return raiz;
 }
+// Función para calcular altura de un árbol
+int calcularAltura(NodoA *raiz)
+{
+  if (!raiz)
+    return 0;
+
+  int alturaIzq = calcularAltura(raiz->izq);
+  int alturaDer = calcularAltura(raiz->dch);
+
+  return (alturaIzq > alturaDer ? alturaIzq : alturaDer) + 1;
+}

@@ -82,17 +82,6 @@ void eliminarNumero(Arbol *arbol, const char *nombre)
   free(dato);
 }
 
-// Función para calcular altura de un árbol
-int calcularAltura(NodoA *raiz)
-{
-  if (!raiz)
-    return 0;
-
-  int alturaIzq = calcularAltura(raiz->izq);
-  int alturaDer = calcularAltura(raiz->dch);
-
-  return (alturaIzq > alturaDer ? alturaIzq : alturaDer) + 1;
-}
 
 void mostrarProfundidades(Arbol *arbolA, Arbol *arbolB)
 {
