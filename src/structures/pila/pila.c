@@ -146,3 +146,30 @@ void ordenarPila(Pila *pila, int (*comparar)(void *, void *))
     pushDato(pila, popDato(&aux));
   }
 }
+// Funcion de verificar parentesis
+int verificarParentesis(char *cadena)
+{
+  Pila pila = {NULL, 0, -1, NULL, NULL};
+  for (int i = 0; cadena[i] != '\0'; i++)
+  {
+    char signo = cadena[i];
+    // Si es abre, lo metemos
+    if (signo == '(' || signo == '{' || signo == '[')
+    {
+      pushDato(&pila, &cadena[i]);
+    }
+    // Si es cierra, verificamos que coincida con el tope
+    else if (signo == ')' || signo == '}' || signo == ']')
+    {
+      if (pilaVacia(pila)) // pila vacía, no hay pareja
+        return 0;
+      char *parejaSigno = popDato(&pila);
+      if ((signo == ')' && *parejaSigno != '(') ||
+          (signo == '}' && *parejaSigno != '{') ||
+          (signo == ']' && *parejaSigno != '['))
+        return 0;
+    }
+  }
+  // Al final la pila debe estar vacía
+  return pilaVacia(pila);
+}

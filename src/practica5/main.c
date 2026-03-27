@@ -82,7 +82,6 @@ void eliminarNumero(Arbol *arbol, const char *nombre)
   free(dato);
 }
 
-
 void mostrarProfundidades(Arbol *arbolA, Arbol *arbolB)
 {
   int alturaA = calcularAltura(arbolA->raiz);
@@ -111,7 +110,12 @@ NodoA *construirBalanceado(int *arr, int inicio, int fin)
     return NULL;
 
   int medio = (inicio + fin) / 2;
-  NodoA *nodo = crearNodoA(&arr[medio]);
+
+  // Reservar memoria para el dato
+  int *dato = (int *)malloc(sizeof(int));
+  *dato = arr[medio];
+
+  NodoA *nodo = crearNodoA(dato);
 
   nodo->izq = construirBalanceado(arr, inicio, medio - 1);
   nodo->dch = construirBalanceado(arr, medio + 1, fin);
@@ -176,7 +180,6 @@ void compararArboles(Arbol *arbolA, Arbol *arbolB)
   // Verificar estructura idéntica
   // int igualesEstructura = 1;
   // Necesitamos una función recursiva para comparar estructura
-  // Por simplicidad, aquí verificamos estructura mediante una función auxiliar
 
   free(datosA);
   free(datosB);
@@ -184,8 +187,6 @@ void compararArboles(Arbol *arbolA, Arbol *arbolB)
   if (igualesDatos)
   {
     printf("Los árboles son iguales en datos\n");
-    // Verificar estructura (necesitaríamos una función recursiva)
-    printf("NOTA: Para verificar estructura exacta se requiere comparación recursiva\n");
   }
   else
   {

@@ -35,3 +35,7 @@ void ordenarPila(Pila *pila, int (*comparar)(void *, void *));
 // Checar reglas de parentesis
 int verificarParentesis(char *cadena);
 int esPalindromo(char *cadena);
+
+// verificar parentesis
+// Funcion de verificar parentesis
+int verificarParentesis(char *cadena);
